@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+/* Fixed light theme, deliberately not adaptive to OS dark mode - a clean,
+   light, minimal SaaS look that the app should always have regardless
+   of the viewer's system theme.
+
+   Palette: a purple/teal/cream colour system, applied as Tailwind theme
+   tokens. */
+:root {
+  --background: #fdfbf4;
+  --foreground: #1a1a1a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-open-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --color-brand: #7A2E9E;
+  --color-brand-dark: #59237A;
+  --color-brand-tint: #F6ECFB;
+  --color-teal: #00A6C0;
+  --color-teal-dark: #027488;
+  --color-teal-tint: #E3F7F9;
+  --color-teal-tint-strong: #BFEEF2;
+  --color-cream: #FDFBF4;
+  --color-border-warm: #DAD2C0;
+  --color-accent-green: #7FB800;
+  --color-accent-orange: #C96A0C;
+  --color-ink-muted: #71685A;
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
