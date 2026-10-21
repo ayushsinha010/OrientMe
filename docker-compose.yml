@@ -1,0 +1,23 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8010:8010"
+    environment:
+      # SQLite file lives in the mounted data folder so it survives rebuilds.
+      DATABASE_PATH: /app/data/db.sqlite3
+      # Set these in a .env file next to this compose file (see .env.example).
+      SETTINGS_EDIT_PASSWORD: ${SETTINGS_EDIT_PASSWORD:-}
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:-dev-only-insecure-key-set-DJANGO_SECRET_KEY}
+    volumes:
+      - ./backend/data:/app/data
+      - ./backend/media:/app/media
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3001:3001"
+    depends_on:
+      - backend
+    restart: unless-stopped
